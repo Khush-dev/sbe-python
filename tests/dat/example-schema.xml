@@ -84,4 +84,13 @@
             <field name="numbers" id="1" type="someNumbers"/>
         </group>
     </sbe:message>
+    <sbe:message name="TestMultipleGroups" id="4" blockLength="4">
+        <field name="year" id="1" type="ModelYear"/>
+        <group name="AGroup" id="2" dimensionType="groupSizeEncoding">
+            <field name="numbers" id="1" type="someNumbers"/>
+        </group>
+        <group name="BGroup" id="2" dimensionType="groupSizeEncoding">
+            <field name="numbers" id="1" type="someNumbers"/>
+        </group>
+    </sbe:message>
 </sbe:messageSchema>

@@ -373,7 +373,7 @@ class WrappedComposite:
                 p1.offset = cursor
                 p1.hydrate()
                 self.pointers[k] = p1
-                cursor += p1.numInGroup * p1.blockLength
+                cursor += p1.numInGroup * p1.blockLength + p.num_in_group_pointer.size + p.block_length_pointer.size
                 seen_group = True
             else:
                 assert not seen_group

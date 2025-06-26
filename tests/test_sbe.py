@@ -38,3 +38,22 @@ def test_blockLength():
         decoded  = s.decode(encoded)
         assert decoded.value['year'] == 1990
         assert decoded.value['AGroup'][1]['numbers'] == 456
+
+def test_multiple_groups():
+    with open("tests/dat/example-schema.xml", "r", encoding="utf-8") as f:
+        s = sbe.Schema.parse(f)
+        msg = s.messages[4]
+
+        encoded = s.encode(
+            msg,
+            {
+                "year": 1990,
+                "AGroup": [{"numbers": 123}, {"numbers": 456}],
+                "BGroup": [{"numbers": 654}, {"numbers": 321}],
+            },
+        )
+
+        decoded = s.wrap(encoded)
+        assert decoded.body["year"] == 1990
+        assert decoded.body["AGroup"][1]["numbers"] == 456
+        assert decoded.body["BGroup"][1]["numbers"] == 321
